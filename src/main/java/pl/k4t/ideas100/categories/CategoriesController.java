@@ -1,4 +1,4 @@
-package pl.k4t.ideas100;
+package pl.k4t.ideas100.categories;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

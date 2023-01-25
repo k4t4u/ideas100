@@ -1,6 +1,7 @@
-package pl.k4t.ideas100;
+package pl.k4t.ideas100.categories;
 
 import org.springframework.stereotype.Service;
+import pl.k4t.ideas100.Ideas100Configuration;
 
 import java.util.Arrays;
 import java.util.List;

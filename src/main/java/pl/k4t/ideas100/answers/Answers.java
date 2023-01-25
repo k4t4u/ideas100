@@ -1,13 +1,13 @@
-package pl.k4t.ideas100;
+package pl.k4t.ideas100.answers;
 
-public class Questions {
+public class Answers {
 
     private String name;
 
-    public Questions() {
+    public Answers() {
     }
 
-    public Questions(String name) {
+    public Answers(String name) {
         this.name = name;
     }
 
@@ -21,7 +21,7 @@ public class Questions {
 
     @Override
     public String toString() {
-        return "Questions{" +
+        return "Answers{" +
                 "name='" + name + '\'' +
                 '}';
     }

@@ -1,4 +1,4 @@
-package pl.k4t.ideas100;
+package pl.k4t.ideas100.categories;
 
 public class Categories {
 
