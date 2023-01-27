@@ -2,26 +2,28 @@ package pl.k4t.ideas100.domain.model;
 
 import java.util.UUID;
 
-public class Categorie {
+public class Category {
 
     private UUID id;
 
     private String name;
 
-    public Categorie() {
+    public Category() {
     }
 
-    public Categorie(String name) {
+    public Category(String name) {
 
         this.name = name;
         this.id = UUID.randomUUID();
     }
 
     public String getName() {
+
         return name;
     }
 
     public void setName(String name) {
+
         this.name = name;
     }
 

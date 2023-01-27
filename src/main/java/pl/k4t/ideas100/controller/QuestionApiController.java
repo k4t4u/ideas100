@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("questions")
-public class QuestionController {
+@RequestMapping("api/v1/questions")
+public class QuestionApiController {
 
     private final QuestionService questionsService;
 
-    public QuestionController(QuestionService questionsService) {
+    public QuestionApiController(QuestionService questionsService) {
 
         this.questionsService = questionsService;
     }
