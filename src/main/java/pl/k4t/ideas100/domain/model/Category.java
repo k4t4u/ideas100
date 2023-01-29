@@ -3,6 +3,8 @@ package pl.k4t.ideas100.domain.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.UUID;
 
 @Entity
@@ -12,6 +14,8 @@ public class Category {
     @Id
     private UUID id;
 
+    @NotBlank(message = "{ideas100.validation.name.NotBlank.message}")
+    @Size(min = 3, max = 35)
     private String name;
 
     public Category() {
