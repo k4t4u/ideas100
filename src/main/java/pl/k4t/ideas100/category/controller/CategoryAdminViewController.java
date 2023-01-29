@@ -1,4 +1,4 @@
-package pl.k4t.ideas100.admin.controller;
+package pl.k4t.ideas100.category.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,4 +1,4 @@
-package pl.k4t.ideas100.controller;
+package pl.k4t.ideas100.category.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

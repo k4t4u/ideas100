@@ -23,3 +23,8 @@ insert into categories (id, name) values
 	(gen_random_uuid(), 'Sex'),
 	(gen_random_uuid(), 'Związki'),
 	(gen_random_uuid(), 'Inne');
+
+
+insert into questions (id, name, category_id) values
+                                                  (gen_random_uuid(), 'Gdzie najlepiej spędzić wakacje z Polsce', (select id from categories where name = 'Turystyka')),
+                                                  (gen_random_uuid(), 'Gdzie najlepiej spędzić wakacje z Europie', (select id from categories where name = 'Turystyka'));

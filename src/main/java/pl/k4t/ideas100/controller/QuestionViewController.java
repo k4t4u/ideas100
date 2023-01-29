@@ -40,7 +40,7 @@ public class QuestionViewController {
     @GetMapping("{id}")
     public String singleView(Model model, @PathVariable UUID id){
         model.addAttribute("question", questionService.getQuestion(id));
-        model.addAttribute("answer", answerService.getAnswers(id));
+        model.addAttribute("answers", answerService.getAnswers(id));
         model.addAttribute("categories", categoryService.getCategories());
             return "question/single";
     }
