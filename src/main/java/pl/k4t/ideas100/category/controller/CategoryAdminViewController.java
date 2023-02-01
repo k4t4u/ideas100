@@ -24,7 +24,6 @@ public class CategoryAdminViewController {
 	private final CategoryService categoryService;
 
 	public CategoryAdminViewController(CategoryService categoryService) {
-
 		this.categoryService = categoryService;
 	}
 
