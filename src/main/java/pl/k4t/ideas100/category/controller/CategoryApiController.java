@@ -17,22 +17,26 @@ public class CategoryApiController {
     private final CategoryService categoryService;
 
     public CategoryApiController(CategoryService categoryService) {
+
         this.categoryService = categoryService;
     }
 
     @GetMapping
     Page<Category> getCategories(Pageable pageable){
+
         return categoryService.getCategories(pageable);
     }
 
     @GetMapping("{id}")
     Category getCategory(@PathVariable UUID id){
+
         return  categoryService.getCategory(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     Category createCategory(@RequestBody Category category){
+
         return categoryService.createCategory(category);
     }
 

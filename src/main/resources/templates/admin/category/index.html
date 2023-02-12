@@ -60,7 +60,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th><a th:class="'sort-'+${reverseSort}"
-                                                th:href="@{'admin/categories'(s=${search}, field='name', direction=${reverseSort})}">Name</a> </th>
+                                                th:href="@{'/admin/categories'(s=${search}, field='name', direction=${reverseSort})}">Name</a> </th>
                                         <th>#</th>
                                     </tr>
                                     </thead>
@@ -83,7 +83,7 @@
                                     </tbody>
                                 </table>
 
-             <!--                   <div class="card-footer clearfix">
+                                <div class="card-footer clearfix">
                                     <ul class="pagination pagination-sm m-0 float-right" th:if="${categoriesPage.totalPages > 0}">
                                         <li th:each="pageNumber : ${pageNumbers}" class="page-item">
                                             <a class="page-link" th:if="${pageNumber-1 != categoriesPage.number}"
@@ -93,18 +93,6 @@
                                         </li>
                                     </ul>
                                 </div>
-                 -->
-                                <div class="card-footer clearfix">
-                                    <ul class="pagination pagination-sm m-0 float-right"
-                                        th:if="${categoriesPage.totalPages > 0}">
-                                        <li th:each="pageNumber : ${pageNumbers}" class="page-item">
-                                            <a class="page-link"
-                                               th:href="@{'/admin/categories'(size=${categoriesPage.size}, page=${pageNumber}-1)}"
-                                               th:text="${pageNumber}"></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->

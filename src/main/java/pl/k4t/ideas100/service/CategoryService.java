@@ -7,8 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.k4t.ideas100.category.domain.repository.CategoryRepository;
 import pl.k4t.ideas100.domain.model.Category;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
 @Service
