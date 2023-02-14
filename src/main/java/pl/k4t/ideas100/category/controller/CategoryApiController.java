@@ -4,10 +4,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import pl.k4t.ideas100.domain.model.Category;
-import pl.k4t.ideas100.service.CategoryService;
+import pl.k4t.ideas100.category.domain.model.Category;
+import pl.k4t.ideas100.category.service.CategoryService;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController

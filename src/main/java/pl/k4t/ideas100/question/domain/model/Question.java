@@ -1,4 +1,6 @@
-package pl.k4t.ideas100.domain.model;
+package pl.k4t.ideas100.question.domain.model;
+
+import pl.k4t.ideas100.category.domain.model.Category;
 
 import javax.persistence.*;
 import java.util.Collections;

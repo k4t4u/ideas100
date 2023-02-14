@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.k4t.ideas100.Ideas100Configuration;
-import pl.k4t.ideas100.domain.model.Question;
+import pl.k4t.ideas100.question.domain.model.Question;
 import pl.k4t.ideas100.service.QuestionService;
 
 import static pl.k4t.ideas100.common.controller.ControllerUtils.paging;

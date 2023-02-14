@@ -3,7 +3,7 @@ package pl.k4t.ideas100.admin.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.k4t.ideas100.domain.model.Answer;
+import pl.k4t.ideas100.question.domain.model.Answer;
 import pl.k4t.ideas100.service.AnswerService;
 
 import java.util.UUID;

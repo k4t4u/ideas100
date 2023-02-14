@@ -2,12 +2,11 @@ package pl.k4t.ideas100.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.k4t.ideas100.domain.model.Answer;
-import pl.k4t.ideas100.domain.model.Question;
+import pl.k4t.ideas100.question.domain.model.Answer;
+import pl.k4t.ideas100.question.domain.model.Question;
 import pl.k4t.ideas100.question.domain.repository.AnswerRepository;
 import pl.k4t.ideas100.question.domain.repository.QuestionRepository;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 

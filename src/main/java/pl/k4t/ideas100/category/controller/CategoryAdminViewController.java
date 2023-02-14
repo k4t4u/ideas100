@@ -10,8 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.k4t.ideas100.common.dto.Message;
-import pl.k4t.ideas100.domain.model.Category;
-import pl.k4t.ideas100.service.CategoryService;
+import pl.k4t.ideas100.category.domain.model.Category;
+import pl.k4t.ideas100.category.service.CategoryService;
 
 import javax.validation.Valid;
 import java.util.UUID;

@@ -1,8 +1,8 @@
-package pl.k4t.ideas100.controller;
+package pl.k4t.ideas100.question.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import pl.k4t.ideas100.domain.model.Question;
+import pl.k4t.ideas100.question.domain.model.Question;
 import pl.k4t.ideas100.service.QuestionService;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package pl.k4t.ideas100.domain.model;
+package pl.k4t.ideas100.category.domain.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

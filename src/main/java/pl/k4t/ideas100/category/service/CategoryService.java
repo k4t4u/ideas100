@@ -1,11 +1,11 @@
-package pl.k4t.ideas100.service;
+package pl.k4t.ideas100.category.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.k4t.ideas100.category.domain.repository.CategoryRepository;
-import pl.k4t.ideas100.domain.model.Category;
+import pl.k4t.ideas100.category.domain.model.Category;
 
 import java.util.UUID;
 

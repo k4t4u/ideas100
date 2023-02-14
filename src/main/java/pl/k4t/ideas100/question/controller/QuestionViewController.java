@@ -1,4 +1,4 @@
-package pl.k4t.ideas100.controller;
+package pl.k4t.ideas100.question.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.k4t.ideas100.Ideas100Configuration;
 import pl.k4t.ideas100.common.controller.Ideas100CommonViewController;
-import pl.k4t.ideas100.domain.model.Question;
+import pl.k4t.ideas100.question.domain.model.Question;
 import pl.k4t.ideas100.service.AnswerService;
-import pl.k4t.ideas100.service.CategoryService;
+import pl.k4t.ideas100.category.service.CategoryService;
 import pl.k4t.ideas100.service.QuestionService;
 
 import java.util.UUID;
