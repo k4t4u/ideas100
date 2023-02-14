@@ -17,7 +17,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="question : ${questionsPage.content}">
+                    <tr th:each="question : ${questionsPage?.content}">
                         <td th:text="${question.name}">Question</td>
                         <td>x</td>
                         <td>x</td>
@@ -28,11 +28,11 @@
             </article>
 
 
-            <nav th:if="${questionsPage.totalPages > 0}" class="blog-pagination" aria-label="Pagination">
+            <nav th:if="${questionsPage?.totalPages > 0}" class="blog-pagination" aria-label="Pagination">
                 <a class="btn btn-outline-primary" th:each="pageNumber : ${pageNumbers}"
-                   th:href="@{''(size=${questionsPage.size}, page=${pageNumber})}"
+                   th:href="@{''(size=${questionsPage?.size}, page=${pageNumber})}"
                    th:text=${pageNumber}
-                   th:class="${pageNumber==questionsPage.number + 1} ? 'btn btn-outline-primary disabled' : 'btn btn-outline-primary'"></a>
+                   th:class="${pageNumber==questionsPage?.number + 1} ? 'btn btn-outline-primary disabled' : 'btn btn-outline-primary'"></a>
             </nav>
 
         </div>
