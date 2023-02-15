@@ -1,30 +1,59 @@
 package pl.k4t.ideas100.question.domain.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import pl.k4t.ideas100.category.domain.model.Category;
-
 import javax.persistence.*;
-import java.util.Collections;
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
 @Table(name = "questions")
+@Getter
+@Setter
+@ToString
 public class Question {
 
     @Id
-    private UUID id;
+        private UUID id;
 
-    private String name;
+        private String name;
 
     @ManyToOne
-    private Category category;
+        private Category category;
 
     @OneToMany(mappedBy = "question")
-    private Set<Answer> answers;
+
+        private Set<Answer> answers;
+
+        private LocalDateTime created;
+
+        private LocalDateTime modified;
 
     public Question() {
+
         this.id = UUID.randomUUID();
+    }
+
+    public Question(String name) {
+        this();
+        this.name = name;
+    }
+
+    @PrePersist
+    void prePersist() {
+        created = LocalDateTime.now();
+        modified = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    void preUpdate() {
+        modified = LocalDateTime.now();
     }
 
     public Question addAnswer(Answer answer){
@@ -34,50 +63,5 @@ public class Question {
         answer.setQuestion(this);
         answers.add(answer);
         return this;
-    }
-
-    public Question(String name) {
-        this();
-        this.name = name;
-    }
-
-    public Set<Answer> getAnswers() {
-        return Collections.unmodifiableSet(answers);
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public String getName() {
-
-        return name;
-    }
-
-    public void setName(String name) {
-
-        this.name = name;
-    }
-
-    public UUID getId() {
-
-        return id;
-    }
-
-    public void setId(UUID id) {
-
-        this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "Question{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
     }
 }

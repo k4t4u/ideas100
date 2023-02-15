@@ -13,7 +13,7 @@ import java.util.UUID;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, UUID> {
 
-	List<Question> findAllByCategoryId(UUID id);
+	List<Question> findAllByCategoryId(UUID id, Pageable pageable);
 
 	@Query("from Question q order by q.answers.size desc")
 	Page<Question> findHot(Pageable pageable);
@@ -27,4 +27,7 @@ public interface QuestionRepository extends JpaRepository<Question, UUID> {
 			nativeQuery = true
 	)
 	Page<Question> findByQuery(String query, Pageable pageable);
+
+	@Query(value = "select * from questions q order by random() limit :limit", nativeQuery = true)
+	List<Question> findRandomQuestions(int limit);
 }
