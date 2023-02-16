@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.k4t.ideas100.common.dto.StatisticsDto;
 import pl.k4t.ideas100.question.domain.model.Question;
 import pl.k4t.ideas100.question.dto.QuestionDto;
 import pl.k4t.ideas100.question.domain.repository.QuestionRepository;
@@ -99,5 +100,10 @@ public class QuestionService {
                 .stream()
                 .map(questionMapper::map)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public StatisticsDto statistics() {
+        return questionRepository.statistics();
     }
 }
