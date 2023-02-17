@@ -11,7 +11,7 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Name</th>
+                        <th th:text="#{field.allQuestions}"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -20,6 +20,11 @@
                     </tr>
                     </tbody>
                 </table>
+                <ul>
+                    <li th:each="question : ${questions}">
+                        <span th:text="${question.name}"></span>
+                    </li>
+                </ul>
 
             </article>
 

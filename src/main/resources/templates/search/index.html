@@ -5,6 +5,7 @@
 <th:block th:replace="template :: header" />
 
 <main class="container">
+    <img src="img/search.jpg" alt="Search photo" class="img-fluid" style="border-radius: 15px;">
     <div class="row g-5">
         <div class="col-md-8">
 
@@ -19,9 +20,9 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th th:text="#{field.name}"></th>
+                        <th th:text="#{field.edit}"></th>
+                        <th th:text="#{field.delete}"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -53,7 +54,7 @@
               </div>
 
                 <div class="p-4">
-                    <h4 class="fst-italic">Random Questions</h4>
+                    <h4 class="fst-italic" th:text="#{random.questions}">Random Questions</h4>
                     <ol class="list-unstyled mb-0">
                         <li th:each="question : ${@indexViewController.randomQuestions()}"><a th:href="@{'/questions/' + ${question.id}}" th:text="${question.name}"></a></li>
                     </ol>

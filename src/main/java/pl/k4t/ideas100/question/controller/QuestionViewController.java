@@ -14,7 +14,6 @@ import pl.k4t.ideas100.Ideas100Configuration;
 import pl.k4t.ideas100.common.controller.Ideas100CommonViewController;
 import pl.k4t.ideas100.question.domain.model.Question;
 import pl.k4t.ideas100.service.AnswerService;
-import pl.k4t.ideas100.category.service.CategoryService;
 import pl.k4t.ideas100.service.QuestionService;
 
 import java.util.UUID;
@@ -28,7 +27,6 @@ public class QuestionViewController extends Ideas100CommonViewController {
 
     private final QuestionService questionService;
     private final AnswerService answerService;
-    private final CategoryService categoryService;
     private final Ideas100Configuration ideas100Configuration;
 
     @GetMapping
