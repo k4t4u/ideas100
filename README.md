@@ -14,8 +14,7 @@ some ss inc
 - [Java](https://www.java.com/en/)
 - [Spring](https://spring.io/)
 - [Maven](https://maven.apache.org/)
-
--[PostgreSQL](https://www.postgresql.org/)
+- [PostgreSQL](https://www.postgresql.org/)
 
 ## Contributing
 
