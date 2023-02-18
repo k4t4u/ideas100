@@ -61,7 +61,12 @@ public class CategoryService {
     }
 
     @Transactional(readOnly = true)
-    public List<CategoryWithStatisticsDto> findAllWithStatistics() {
+    public Integer countCategories() {
+        return categoryRepository.findAll().size();
+    }
+
+    @Transactional(readOnly = true)
+    public List<CategoryWithStatisticsDto> findAllWithStatistics () {
         return categoryRepository.findAllWithStatistics();
     }
 }

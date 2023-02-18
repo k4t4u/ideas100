@@ -16,12 +16,11 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Starter Page</h1>
+                        <h1 class="m-0">Admin Panel</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Starter Page</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -36,57 +35,56 @@
                 <div class="row">
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
+                        <div class="small-box bg-danger">
+                            <div class="inner" style="text-align: center; margin: auto;">
+                                <h3 th:text="${countCategories}"></h3>
+                                <p>Categories</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="/admin/categories" class="small-box-footer">See all Categories <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
                         <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3 th:text="${statistics.questions}"></h3>
+                            <div class="inner" style="text-align: center; margin: auto;">
+                                <h3 th:text="${countQuestions}"></h3>
                                 <p>Questions</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="/admin/questions" class="small-box-footer">See all Questions <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
                         <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3 th:text="${statistics.answers}"></h3>
+                            <div class="inner" style="text-align: center; margin: auto;">
+                                <h3 th:text="${countAnswers}"></h3>
                                 <p>Answers</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="admin/answers" class="small-box-footer">See all Answers <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
                         <div class="small-box bg-warning">
-                            <div class="inner">
+                            <div class="inner" style="text-align: center; margin: auto;">
                                 <h3>44</h3>
 
                                 <p>User Registrations</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>65</h3>
-
-                                <p>Unique Visitors</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
                             </div>
                             <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>

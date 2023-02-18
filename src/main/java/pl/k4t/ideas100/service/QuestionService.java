@@ -103,7 +103,7 @@ public class QuestionService {
     }
 
     @Transactional(readOnly = true)
-    public StatisticsDto statistics() {
-        return questionRepository.statistics();
+    public Integer countQuestions() {
+        return questionRepository.findAll().size();
     }
 }
