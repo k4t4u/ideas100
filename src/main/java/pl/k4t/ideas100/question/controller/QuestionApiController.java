@@ -1,5 +1,6 @@
 package pl.k4t.ideas100.question.controller;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.k4t.ideas100.question.domain.model.Question;
@@ -20,31 +21,37 @@ public class QuestionApiController {
     }
 
     @GetMapping
-    List<Question> getQuestions(){
+    List<Question> getQuestions(Pageable pageable){
 
         return questionsService.getQuestions();
     }
 
-    @GetMapping("{id}")
-    Question getQuestion(@PathVariable UUID id){
-        return  questionsService.getQuestion(id);
+    @GetMapping("{question-id}")
+    Question getAnswer(@PathVariable("question-id") UUID questionId,
+                     @PathVariable("answer-id") UUID answerId){
+        return  questionsService.getQuestion(questionId);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    Question createQuestion(@RequestBody Question question){
-        return questionsService.createQuestion(question);
+    Question createQuestion(@PathVariable("category-id") UUID categoryId, @RequestBody Question question){
+
+        return questionsService.createQuestion(categoryId, question);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("{question-id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    Question updateQuestion(@PathVariable UUID id, @RequestBody Question question){
-        return questionsService.updateQuestion(id, question);
+    Question updateQuestion(
+            @PathVariable("category-id") UUID categoryId,
+            @PathVariable("question-id") UUID questionId,
+            @RequestBody Question question){
+        return questionsService.updateQuestion(questionId, question);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("{question-id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void deleteQuestion(@PathVariable UUID id){
-        questionsService.deleteQuestion(id);
+    void deleteQuestion(@PathVariable("question-id") UUID questionId){
+
+        questionsService.deleteQuestion(questionId);
     }
 }

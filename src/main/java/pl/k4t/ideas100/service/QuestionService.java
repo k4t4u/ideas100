@@ -6,10 +6,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.k4t.ideas100.common.dto.StatisticsDto;
+import pl.k4t.ideas100.category.domain.model.Category;
+import pl.k4t.ideas100.category.domain.repository.CategoryRepository;
 import pl.k4t.ideas100.question.domain.model.Question;
 import pl.k4t.ideas100.question.dto.QuestionDto;
 import pl.k4t.ideas100.question.domain.repository.QuestionRepository;
+
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -21,6 +23,7 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
 
     private final QuestionMapper questionMapper;
+    private final CategoryRepository categoryRepository;
 
     @Transactional(readOnly = true)
     public List<Question> getQuestions() {
@@ -31,15 +34,20 @@ public class QuestionService {
     @Transactional(readOnly = true)
     public Question getQuestion(UUID id) {
 
-        return questionRepository.getById(id);
+        return questionRepository.getReferenceById(id);
     }
 
     @Transactional
-    public Question createQuestion(Question questionRequest) {
+    public Question createQuestion(UUID categoryId, Question questionRequest) {
         Question question = new Question();
         question.setName(questionRequest.getName());
+        Category category = categoryRepository.getReferenceById(categoryId);
+        question.setCategory(category);
 
-        return questionRepository.save(question);
+        questionRepository.save(question);
+        categoryRepository.save(category);
+
+        return question;
     }
 
     @Transactional

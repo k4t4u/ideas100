@@ -94,10 +94,10 @@ public class CategoryAdminViewController {
 	public String deleteView(@PathVariable UUID id, RedirectAttributes ra) {
 		try {
 			categoryService.deleteCategory(id);
-			ra.addFlashAttribute("message", Message.info("Kategoria usunięta"));
+			ra.addFlashAttribute("message", Message.info("Category deleted"));
 		} catch (Exception e) {
 			log.error("Error on category.delete", e);
-			ra.addFlashAttribute("message", Message.error("Nieznany błąd podczas usuwania"));
+			ra.addFlashAttribute("message", Message.error("Unknown delete error"));
 			return "redirect:/admin/categories";
 		}
 		return "redirect:/admin/categories";

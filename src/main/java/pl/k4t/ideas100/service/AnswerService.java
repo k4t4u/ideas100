@@ -1,7 +1,11 @@
 package pl.k4t.ideas100.service;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.k4t.ideas100.category.domain.repository.CategoryRepository;
 import pl.k4t.ideas100.question.domain.model.Answer;
 import pl.k4t.ideas100.question.domain.model.Question;
 import pl.k4t.ideas100.question.domain.repository.AnswerRepository;
@@ -11,17 +15,15 @@ import java.util.List;
 import java.util.UUID;
 
     @Service
+    @RequiredArgsConstructor
     public class AnswerService {
 
         private final AnswerRepository answerRepository;
 
         private final QuestionRepository questionRepository;
 
-        public AnswerService(AnswerRepository answerRepository,
-                             QuestionRepository questionRepository) {
-            this.answerRepository = answerRepository;
-            this.questionRepository = questionRepository;
-        }
+        private final AnswerMapper answerMapper;
+
 
         @Transactional(readOnly = true)
         public List<Answer> getAnswers(UUID questionId) {
@@ -29,7 +31,13 @@ import java.util.UUID;
         }
 
         @Transactional(readOnly = true)
+        public List<Answer> findAllAnswers() {
+            return answerRepository.findAll();
+        }
+
+        @Transactional(readOnly = true)
         public Answer getAnswer(UUID id) {
+
             return answerRepository.getById(id);
         }
 

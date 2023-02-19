@@ -7,6 +7,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import pl.k4t.ideas100.category.domain.model.Category;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -22,7 +24,9 @@ public class Question {
     @Id
         private UUID id;
 
-        private String name;
+    @NotBlank
+    @Size(min = 3, max = 255)
+    private String name;
 
     @ManyToOne
         private Category category;

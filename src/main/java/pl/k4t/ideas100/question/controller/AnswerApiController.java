@@ -1,5 +1,6 @@
 package pl.k4t.ideas100.question.controller;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.k4t.ideas100.question.domain.model.Answer;
@@ -15,6 +16,7 @@ public class AnswerApiController {
     private final AnswerService answersService;
 
     public AnswerApiController(AnswerService answersService) {
+
         this.answersService = answersService;
     }
 
@@ -31,7 +33,10 @@ public class AnswerApiController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    Answer createAnswer(@PathVariable("question-id") UUID questionId ,@RequestBody Answer answer){
+    Answer createAnswer(
+            @PathVariable("question-id") UUID questionId ,
+            @RequestBody Answer answer){
+
         return answersService.createAnswer(questionId, answer);
     }
 
@@ -41,12 +46,14 @@ public class AnswerApiController {
     Answer updateAnswer(@PathVariable("question-id") UUID questionId,
                         @PathVariable("answer-id") UUID answerId,
                         @RequestBody Answer answer){
+
         return answersService.updateAnswer(answerId, answer);
     }
 
     @DeleteMapping("{answer-id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteAnswer(@PathVariable("answer-id") UUID answerId){
+
         answersService.deleteAnswer(answerId);
     }
 }
