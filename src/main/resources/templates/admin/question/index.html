@@ -16,12 +16,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Starter Page</h1>
+                        <h1 class="m-0">All questions admin page</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Starter Page</li>
+                            <li class="breadcrumb-item active">All questions admin page</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -64,6 +64,9 @@
                                     <tr th:each="question : ${questions}">
                                         <td th:text="${question.name}"></td>
                                         <td>
+                                            <a th:href="@{'/admin/questions/'+${question.id}+'/add'}" class="btn btn-info btn-sm">
+                                                <i class="fas fa-pencil-alt"></i> Add answer
+                                            </a>
                                             <a th:href="@{'/questions/'+${question.id}}" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-folder"></i>View
                                             </a>
