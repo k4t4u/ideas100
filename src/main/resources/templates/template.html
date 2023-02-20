@@ -248,7 +248,7 @@
                 </div>
 
                 <div class="p-4">
-                    <h4 class="fst-italic">Random Questions</h4>
+                    <h4 class="fst-italic" th:text="#{random.questions}">Random Questions</h4>
                     <ol class="list-unstyled mb-0">
                         <li th:each="question : ${@indexViewController.randomQuestions()}"><a th:href="@{'/questions/' + ${question.id}}" th:text="${question.name}"></a></li>
                     </ol>
