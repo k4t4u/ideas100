@@ -27,7 +27,16 @@ import java.util.UUID;
 
         @Transactional(readOnly = true)
         public List<Answer> getAnswers(UUID questionId) {
+
             return answerRepository.findByQuestionId(questionId);
+        }
+
+        @Transactional(readOnly = true)
+        public Page<Answer> findAllByQuestionId(UUID id, String search, Pageable pageable) {
+            if(search==null){
+                return answerRepository.findAllByQuestionId(id, pageable);
+            }
+            return answerRepository.findAllByQuestionIdAndNameContainingIgnoreCase(id, search, pageable);
         }
 
         @Transactional(readOnly = true)

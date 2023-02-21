@@ -1,5 +1,6 @@
 package pl.k4t.ideas100.question.domain.model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,15 +15,14 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
 
+@Data
 @Entity
 @Table(name = "questions")
-@Getter
-@Setter
-@ToString
 public class Question {
 
     @Id
-        private UUID id;
+    @Column(columnDefinition = "uuid")
+    private UUID id;
 
     @NotBlank
     @Size(min = 3, max = 255)

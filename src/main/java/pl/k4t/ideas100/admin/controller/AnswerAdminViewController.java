@@ -54,7 +54,7 @@ public class AnswerAdminViewController {
             reverseSort = "asc";
         }
 
-        model.addAttribute("answers", answerService.getAnswers(UUID.randomUUID()));
+        model.addAttribute("answers", answerService.findAllAnswers());
         model.addAttribute("answersPage", answersPage);
         model.addAttribute("search", search);
         model.addAttribute("reverseSort", reverseSort);
