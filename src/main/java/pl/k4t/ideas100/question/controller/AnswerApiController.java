@@ -1,6 +1,5 @@
 package pl.k4t.ideas100.question.controller;
 
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.k4t.ideas100.question.domain.model.Answer;

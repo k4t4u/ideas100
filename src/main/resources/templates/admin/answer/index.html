@@ -65,8 +65,6 @@
                                     <tr th:each="answer : ${answers}">
                                         <td th:text="${answer.name}"></td>
                                         <td>
-                                            <a th:href="@{'/answers/'+${answer.id}}" class="btn btn-primary btn-sm">
-                                                <i class="fas fa-folder"></i>View
                                             </a>
                                             <a th:href="@{'/admin/answers/'+${answer.id}}" class="btn btn-info btn-sm">
                                                 <i class="fas fa-pencil-alt"></i> Edit

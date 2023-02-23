@@ -23,6 +23,7 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
 
     private final QuestionMapper questionMapper;
+
     private final CategoryRepository categoryRepository;
 
     @Transactional(readOnly = true)
@@ -35,6 +36,22 @@ public class QuestionService {
     public Question getQuestion(UUID id) {
 
         return questionRepository.getReferenceById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Question> getQuestions(String search, Pageable pageable) {
+        if(search==null){
+            return questionRepository.findAll(pageable);
+        } else {
+            return questionRepository.findAllByNameContainingIgnoreCase(search, pageable);
+        }
+    }
+    @Transactional(readOnly = true)
+    public List<QuestionDto> getQuestions(String search) {
+        return questionRepository.findAllByNameContainingIgnoreCase(search)
+                .stream()
+                .map(questionMapper::map)
+                .collect(Collectors.toList());
     }
 
     @Transactional
@@ -52,7 +69,7 @@ public class QuestionService {
 
     @Transactional
     public Question updateQuestion(UUID id, Question questionRequest) {
-        Question question = questionRepository.getById(id);
+        Question question = questionRepository.getReferenceById(id);
         question.setName(questionRequest.getName());
 
         return questionRepository.save(question);
@@ -60,13 +77,27 @@ public class QuestionService {
 
     @Transactional
     public void deleteQuestion(UUID id) {
+
         questionRepository.deleteById(id);
     }
 
     @Transactional(readOnly = true)
     public List<Question> findAllByCategoryId(UUID id) {
 
-        return questionRepository.findAllByCategoryId(id, Pageable.unpaged());
+        return questionRepository.findAllByCategoryId(id);
+    }
+
+        @Transactional(readOnly = true)
+    public Page<Question> findAllByCategoryId(UUID id, Pageable pageable) {
+        return findAllByCategoryId(id, null, pageable);
+    }
+    @Transactional(readOnly = true)
+    public Page<Question> findAllByCategoryId(UUID id, String search, Pageable pageable) {
+        if(search==null){
+            return questionRepository.findAllByCategoryId(id, pageable);
+        } else {
+            return questionRepository.findAllByCategoryIdAndNameContainingIgnoreCase(id, search, pageable);
+        }
     }
 
     @Transactional(readOnly = true)

@@ -11,11 +11,12 @@ import java.util.UUID;
 
 @Repository
 public interface AnswerRepository extends JpaRepository<Answer, UUID> {
+
 	List<Answer> findByQuestionId(UUID questionId);
 
-	List<Answer> findAllByNameContainingIgnoreCase(String name);
-
 	Page<Answer> findAllByQuestionId(UUID id, Pageable pageable);
+
+	Page<Answer> findAllByQuestionIdAndNameContainingIgnoreCase(UUID id, String name, Pageable pageable);
 
 }
 

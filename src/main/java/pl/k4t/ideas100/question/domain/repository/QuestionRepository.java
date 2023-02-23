@@ -5,7 +5,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import pl.k4t.ideas100.category.domain.model.Category;
 import pl.k4t.ideas100.common.dto.StatisticsDto;
 import pl.k4t.ideas100.question.domain.model.Question;
 
@@ -15,10 +14,15 @@ import java.util.UUID;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, UUID> {
 
-	List<Question> findAllByCategoryId(UUID id, Pageable pageable);
-	
+	List<Question> findAllByCategoryId(UUID id);
 
-	Page<Question> findByNameContainingIgnoreCase(String name, Pageable pageable);
+	Page<Question> findAllByCategoryId(UUID id, Pageable pageable);
+
+	Page<Question> findAllByCategoryIdAndNameContainingIgnoreCase(UUID id, String name, Pageable pageable);
+
+	List<Question> findAllByNameContainingIgnoreCase(String name);
+
+	Page<Question> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
 
 	@Query("from Question q order by q.answers.size desc")
 	Page<Question> findHot(Pageable pageable);

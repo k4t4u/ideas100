@@ -5,7 +5,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.k4t.ideas100.category.domain.repository.CategoryRepository;
 import pl.k4t.ideas100.question.domain.model.Answer;
 import pl.k4t.ideas100.question.domain.model.Question;
 import pl.k4t.ideas100.question.domain.repository.AnswerRepository;
@@ -27,7 +26,16 @@ import java.util.UUID;
 
         @Transactional(readOnly = true)
         public List<Answer> getAnswers(UUID questionId) {
+
             return answerRepository.findByQuestionId(questionId);
+        }
+
+        @Transactional(readOnly = true)
+        public Page<Answer> findAllByQuestionId(UUID id, String search, Pageable pageable) {
+            if(search==null){
+                return answerRepository.findAllByQuestionId(id, pageable);
+            }
+            return answerRepository.findAllByQuestionIdAndNameContainingIgnoreCase(id, search, pageable);
         }
 
         @Transactional(readOnly = true)

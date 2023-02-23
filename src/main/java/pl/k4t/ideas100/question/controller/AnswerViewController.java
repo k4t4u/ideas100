@@ -1,7 +1,6 @@
 package pl.k4t.ideas100.question.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +19,7 @@ public class AnswerViewController extends Ideas100CommonViewController {
 
     private final QuestionService questionService;
     private final AnswerService answerService;
+
     private final Ideas100Configuration ideas100Configuration;
 
     @GetMapping

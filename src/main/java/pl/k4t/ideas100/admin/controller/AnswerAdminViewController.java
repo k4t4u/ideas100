@@ -1,7 +1,6 @@
 package pl.k4t.ideas100.admin.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -54,7 +53,7 @@ public class AnswerAdminViewController {
             reverseSort = "asc";
         }
 
-        model.addAttribute("answers", answerService.getAnswers(UUID.randomUUID()));
+        model.addAttribute("answers", answerService.findAllAnswers());
         model.addAttribute("answersPage", answersPage);
         model.addAttribute("search", search);
         model.addAttribute("reverseSort", reverseSort);

@@ -1,57 +1,77 @@
 package pl.k4t.ideas100.question.controller;
 
-import org.springframework.data.domain.Pageable;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import pl.k4t.ideas100.question.domain.model.Answer;
 import pl.k4t.ideas100.question.domain.model.Question;
+import pl.k4t.ideas100.service.AnswerService;
 import pl.k4t.ideas100.service.QuestionService;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("api/v1/questions")
 public class QuestionApiController {
 
-    private final QuestionService questionsService;
+    private final QuestionService questionService;
 
-    public QuestionApiController(QuestionService questionsService) {
-
-        this.questionsService = questionsService;
-    }
+    private final AnswerService answerService;
 
     @GetMapping
-    List<Question> getQuestions(Pageable pageable){
+    List<Question> getQuestions(){
 
-        return questionsService.getQuestions();
+        return questionService.getQuestions();
     }
 
+    @GetMapping("{id}")
+    Question getQuestion(@PathVariable UUID id) {
+
+        return questionService.getQuestion(id);
+    }
+
+    @GetMapping("{id}/answers")
+    List<Answer> findAllByQuestionId(@PathVariable UUID id) {
+
+        return answerService.getAnswers(id);
+    }
+    
     @GetMapping("{question-id}")
     Question getAnswer(@PathVariable("question-id") UUID questionId,
                      @PathVariable("answer-id") UUID answerId){
-        return  questionsService.getQuestion(questionId);
+        return  questionService.getQuestion(questionId);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    Question createQuestion(@PathVariable("category-id") UUID categoryId, @RequestBody Question question){
+    Question createQuestion(
+            @PathVariable("category-id") UUID categoryId,
+            @RequestBody Question question){
 
-        return questionsService.createQuestion(categoryId, question);
+        return questionService.createQuestion(categoryId, question);
     }
 
-    @PutMapping("{question-id}")
+    @PutMapping("{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     Question updateQuestion(
-            @PathVariable("category-id") UUID categoryId,
-            @PathVariable("question-id") UUID questionId,
-            @RequestBody Question question){
-        return questionsService.updateQuestion(questionId, question);
+            @PathVariable UUID id,
+            @RequestBody Question question) {
+
+        return questionService.updateQuestion(id, question);
+    }
+
+    @PostMapping("{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    Answer createAnswer(@PathVariable UUID id, @RequestBody Answer answer) {
+        return answerService.createAnswer(id, answer);
     }
 
     @DeleteMapping("{question-id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteQuestion(@PathVariable("question-id") UUID questionId){
 
-        questionsService.deleteQuestion(questionId);
+        questionService.deleteQuestion(questionId);
     }
 }
