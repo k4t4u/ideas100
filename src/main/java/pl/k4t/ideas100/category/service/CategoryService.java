@@ -37,7 +37,7 @@ public class CategoryService {
 
     @Transactional(readOnly = true)
     public Category getCategory(UUID id) {
-        return categoryRepository.getById(id);
+        return categoryRepository.getReferenceById(id);
     }
 
     @Transactional

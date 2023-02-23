@@ -13,6 +13,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.k4t.ideas100.common.dto.Message;
 import pl.k4t.ideas100.category.domain.model.Category;
 import pl.k4t.ideas100.category.service.CategoryService;
+import pl.k4t.ideas100.question.domain.model.Question;
+import pl.k4t.ideas100.service.QuestionService;
 
 import javax.validation.Valid;
 import java.util.UUID;
@@ -26,9 +28,12 @@ public class CategoryAdminViewController {
 
 	private final CategoryService categoryService;
 
-	public CategoryAdminViewController(CategoryService categoryService) {
+	private final QuestionService questionService;
+
+	public CategoryAdminViewController(CategoryService categoryService, QuestionService questionService) {
 
 		this.categoryService = categoryService;
+		this.questionService = questionService;
 	}
 
 	@GetMapping
@@ -56,6 +61,37 @@ public class CategoryAdminViewController {
 		paging(model, categoriesPage);
 
 		return "admin/category/index";
+	}
+
+
+	@GetMapping("{id}/add")
+	public String addQuestionView(@PathVariable UUID id, Model model) {
+		model.addAttribute("category", categoryService.getCategory(id));
+		Question question = new Question();
+		question.setCategory(categoryService.getCategory(id));
+		model.addAttribute("question", question);
+		return "admin/question/addQuestion";
+	}
+
+	@PostMapping("{id}/add")
+	public String addQuestion(@PathVariable UUID id,
+							@Valid @ModelAttribute("question") Question question,
+							BindingResult bindingResult,
+							RedirectAttributes ra,
+							Model model) {
+		if(bindingResult.hasErrors()){
+			model.addAttribute("category", categoryService.getCategory(id));
+		}
+		try {
+			model.addAttribute("question", questionService.createQuestion(id, question));
+			ra.addFlashAttribute("message", Message.info("Question has been added"));
+		}catch(Exception e) {
+			log.error("Error on answer add", e);
+			model.addAttribute("question", question);
+			ra.addFlashAttribute("message", Message.info("Unknown error occurred on question add."));
+			return "admin/question/addQuestion";
+		}
+		return "redirect:/admin/categories/{id}";
 	}
 
 	@GetMapping("{id}")

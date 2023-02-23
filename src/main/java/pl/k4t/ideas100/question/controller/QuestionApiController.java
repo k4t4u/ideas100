@@ -1,7 +1,6 @@
 package pl.k4t.ideas100.question.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.k4t.ideas100.question.domain.model.Answer;
@@ -29,11 +28,13 @@ public class QuestionApiController {
 
     @GetMapping("{id}")
     Question getQuestion(@PathVariable UUID id) {
+
         return questionService.getQuestion(id);
     }
 
     @GetMapping("{id}/answers")
     List<Answer> findAllByQuestionId(@PathVariable UUID id) {
+
         return answerService.getAnswers(id);
     }
     

@@ -1,9 +1,6 @@
 package pl.k4t.ideas100.question.domain.model;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import pl.k4t.ideas100.category.domain.model.Category;

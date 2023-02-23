@@ -5,7 +5,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.k4t.ideas100.category.domain.repository.CategoryRepository;
 import pl.k4t.ideas100.question.domain.model.Answer;
 import pl.k4t.ideas100.question.domain.model.Question;
 import pl.k4t.ideas100.question.domain.repository.AnswerRepository;
