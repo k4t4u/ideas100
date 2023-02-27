@@ -50,7 +50,7 @@ public class QuestionApiController {
             @PathVariable("category-id") UUID categoryId,
             @RequestBody Question question){
 
-        return questionService.createQuestion(categoryId, question);
+        return questionService.createQuestion(question);
     }
 
     @PutMapping("{id}")

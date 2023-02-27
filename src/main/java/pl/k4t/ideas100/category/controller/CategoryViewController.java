@@ -60,7 +60,7 @@ public class CategoryViewController extends Ideas100CommonViewController {
 			model.addAttribute("question", question);
 		}
 		try {
-			model.addAttribute("question", questionService.createQuestion(id, question));
+			model.addAttribute("question", questionService.createQuestion(question));
 			ra.addFlashAttribute("message", Message.info("Question has been added"));
 		}catch(Exception e) {
 			log.error("Error on question add", e);

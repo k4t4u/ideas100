@@ -55,17 +55,14 @@ public class QuestionService {
     }
 
     @Transactional
-    public Question createQuestion(UUID categoryId, Question questionRequest) {
+    public Question createQuestion(Question questionRequest) {
         Question question = new Question();
         question.setName(questionRequest.getName());
-        Category category = categoryRepository.getReferenceById(categoryId);
-        question.setCategory(category);
+        question.setCategory(questionRequest.getCategory());
 
-        questionRepository.save(question);
-        categoryRepository.save(category);
-
-        return question;
+        return questionRepository.save(question);
     }
+
 
     @Transactional
     public Question updateQuestion(UUID id, Question questionRequest) {

@@ -83,7 +83,7 @@ public class CategoryAdminViewController {
 			model.addAttribute("category", categoryService.getCategory(id));
 		}
 		try {
-			model.addAttribute("question", questionService.createQuestion(id, question));
+			model.addAttribute("question", questionService.createQuestion(question));
 			ra.addFlashAttribute("message", Message.info("Question has been added"));
 		}catch(Exception e) {
 			log.error("Error on answer add", e);
