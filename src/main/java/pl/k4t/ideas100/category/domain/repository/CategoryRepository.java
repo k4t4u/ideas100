@@ -16,10 +16,9 @@ public interface CategoryRepository extends JpaRepository<Category, UUID> {
     Page<Category> findByNameContainingIgnoreCase(String name, Pageable pageable);
 
     @Query(value = "select new pl.k4t.ideas100.category.dto.CategoryWithStatisticsDto(" +
-            "c.id, c.name, count(q), count(a)) " +
-            "from Category c " +
-            "left join c.questions q " +
-            "left join q.answers a " +
-            "group by c.id ")
+            "c.id, c.name, " +
+            "(select count(q) from Question q where q.category = c), " +
+            "(select count(a) from Answer a join a.question q where q.category = c)) " +
+            "from Category c")
     List<CategoryWithStatisticsDto> findAllWithStatistics();
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="admin/template :: head(title = '100 ideas – Admin')"></head>
+<head th:replace="admin/template :: head(title = 'Ideas100 – Admin')"></head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
@@ -65,10 +65,13 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="category, it : ${categoriesPage.content}">
+                                        <tr th:each="category, it : ${categoriesPage.content}">
                                         <td th:text="${it.index}+1"></td>
                                         <td th:text="${category.name}"></td>
                                         <td>
+                                            <a th:href="@{'/admin/categories/add'}" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-folder"></i>Add new category
+                                            </a>
                                             <a th:href="@{'/admin/categories/'+${category.id}+'/add'}" class="btn btn-info btn-sm">
                                                 <i class="fas fa-pencil-alt"></i> Add question
                                             </a>
@@ -114,7 +117,7 @@
     <th:block th:replace="admin/template :: footer" />
 </div>
 <!-- ./wrapper -->
-
+</div>
 
 </body>
 </html>

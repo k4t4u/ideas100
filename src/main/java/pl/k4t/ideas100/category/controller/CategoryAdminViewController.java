@@ -63,6 +63,35 @@ public class CategoryAdminViewController {
 		return "admin/category/index";
 	}
 
+	@GetMapping("/add")
+	public String addView(Model model){
+		model.addAttribute("category", new Category());
+		return "admin/category/add";
+	}
+
+	@PostMapping("/add")
+	public String add(
+			@Valid @ModelAttribute("category") Category category,
+			BindingResult bindingResult,
+			RedirectAttributes ra,
+			Model model
+	){
+		if (bindingResult.hasErrors()){
+			model.addAttribute("category", category);
+			model.addAttribute("message", Message.error("Save error"));
+			return "admin/category/add";
+		}
+		try {
+			categoryService.createCategory(category);
+			ra.addFlashAttribute("message", Message.info("Category added"));
+		}catch (Exception e){
+			model.addAttribute("category", category);
+			model.addAttribute("message", Message.error("Unknown save error"));
+			return "admin/category/add";
+		}
+
+		return "redirect:/admin/categories";
+	}
 
 	@GetMapping("{id}/add")
 	public String addQuestionView(@PathVariable UUID id, Model model) {

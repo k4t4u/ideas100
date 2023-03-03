@@ -19,6 +19,7 @@ import java.util.UUID;
 public class Category {
 
     @Id
+    @Column(columnDefinition = "uuid")
     private UUID id;
 
     @NotBlank(message = "{ideas.validation.name.NotBlank.message}")
