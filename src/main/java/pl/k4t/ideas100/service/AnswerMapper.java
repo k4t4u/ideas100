@@ -1,6 +1,5 @@
 package pl.k4t.ideas100.service;
 
-
 import org.springframework.stereotype.Component;
 import pl.k4t.ideas100.question.domain.model.Answer;
 import pl.k4t.ideas100.question.dto.AnswerDto;

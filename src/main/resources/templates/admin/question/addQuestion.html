@@ -40,19 +40,19 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="post" th:object="${question}">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="questionName">Name</label>
-                                <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</span>
-                                <input th:field="*{name}" type="text" class="form-control" id="questionName" placeholder="Question">
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
+                    <form th:action="@{/questions}" method="post">
+                        <label for="questionName">Question name:</label>
+                        <input type="text" id="questionName" name="name">
+                        <br>
+                        <br>
+                        <label for="questionCategory">Question category:</label>
+                        <select id="questionCategory" name="category">
+                            <option th:each="category : ${category}"
+                                    th:value="${category.id}"
+                                    th:text="${category.name}">
+                            </option>
+                        </select>
+                        <button type="submit">Create question</button>
                     </form>
                 </div>
                 <!-- /.card -->

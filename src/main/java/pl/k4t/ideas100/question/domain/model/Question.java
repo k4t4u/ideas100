@@ -1,12 +1,9 @@
 package pl.k4t.ideas100.question.domain.model;
 
-import lombok.Data;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import pl.k4t.ideas100.category.domain.model.Category;
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;

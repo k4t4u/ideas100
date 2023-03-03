@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.k4t.ideas100.category.domain.model.Category;
 import pl.k4t.ideas100.category.domain.repository.CategoryRepository;
 import pl.k4t.ideas100.question.domain.model.Question;
 import pl.k4t.ideas100.question.dto.QuestionDto;
@@ -62,7 +61,6 @@ public class QuestionService {
 
         return questionRepository.save(question);
     }
-
 
     @Transactional
     public Question updateQuestion(UUID id, Question questionRequest) {

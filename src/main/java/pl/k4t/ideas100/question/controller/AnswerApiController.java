@@ -39,7 +39,6 @@ public class AnswerApiController {
         return answersService.createAnswer(questionId, answer);
     }
 
-
     @PutMapping("{answer-id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     Answer updateAnswer(@PathVariable("question-id") UUID questionId,

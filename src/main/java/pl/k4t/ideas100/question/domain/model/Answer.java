@@ -3,7 +3,6 @@ package pl.k4t.ideas100.question.domain.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;

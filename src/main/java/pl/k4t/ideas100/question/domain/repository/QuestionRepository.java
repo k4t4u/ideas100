@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pl.k4t.ideas100.common.dto.StatisticsDto;
 import pl.k4t.ideas100.question.domain.model.Question;
@@ -40,6 +41,6 @@ public interface QuestionRepository extends JpaRepository<Question, UUID> {
 	@Query(value = "select * from questions q order by random() limit :limit", nativeQuery = true)
 	List<Question> findRandomQuestions(int limit);
 
-	@Query(value = "select new pl.k4t.ideas100.common.dto.StatisticsDto(count(q), count(a)) from Question q join q.answers a")
-	StatisticsDto statistics();
+	@Query(value = "select new pl.k4t.ideas100.common.dto.StatisticsDto(count(q) as numQuestions, count(a) as numAnswers) from Question q join q.answers a where q.category = :category")
+	StatisticsDto statistics(@Param("category") String category);
 }

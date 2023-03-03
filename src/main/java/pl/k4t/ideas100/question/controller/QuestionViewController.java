@@ -54,8 +54,10 @@ public class QuestionViewController extends Ideas100CommonViewController {
     }
 
     @PostMapping
-    public String add(UUID categoryId, Question question){
+    public String addQuestion(Model model, Question question){
         questionService.createQuestion(question);
+        model.addAttribute("questions", questionService.getQuestions());
+        addGlobalAttributes(model);
 
         return "redirect:/questions";
     }

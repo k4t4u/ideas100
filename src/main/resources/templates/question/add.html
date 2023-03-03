@@ -9,10 +9,19 @@
     <div class="row g-5">
         <div class="col-md-8">
             <article class="blog-post">
-                <form th:object="${question}" method="post" action="/questions">
-                    Name:   <input type="text" th:field="*{name}" /> <br />
-                    <input type="submit" value="Add" />
-
+                <form th:action="@{/questions}" method="post">
+                    <label for="questionName">Question name:</label>
+                    <input type="text" id="questionName" name="name">
+                    <br>
+                    <br>
+                    <label for="questionCategory">Question category:</label>
+                    <select id="questionCategory" name="category">
+                        <option th:each="category : ${category}"
+                                th:value="${category.id}"
+                                th:text="${category.name}">
+                        </option>
+                    </select>
+                    <button type="submit">Create question</button>
                 </form>
                 <table class="table">
                     <thead>

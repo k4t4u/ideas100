@@ -2,6 +2,7 @@ package pl.k4t.ideas100.category.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,7 +19,6 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-
 @Controller
 @RequestMapping("/categories")
 @RequiredArgsConstructor
@@ -27,6 +27,14 @@ public class CategoryViewController extends Ideas100CommonViewController {
 
 	private final CategoryService categoryService;
 	private final QuestionService questionService;
+
+	@GetMapping
+	public String indexView(Model model) {
+		model.addAttribute("categories", categoryService.getCategories(Pageable.unpaged()));
+		addGlobalAttributes(model);
+
+		return "category/index";
+	}
 
 	@GetMapping("{id}")
 	public String singleView(@PathVariable UUID id, Model model){
@@ -40,13 +48,20 @@ public class CategoryViewController extends Ideas100CommonViewController {
 		return "category/single";
 	}
 
+	@GetMapping("add")
+	public String addView(Model model){
+		model.addAttribute("question", new Question());
+
+		return "category/index";
+	}
+
 	@GetMapping("{id}/add")
 	public String addQuestionView(@PathVariable UUID id, Model model) {
 		model.addAttribute("category", categoryService.getCategory(id));
 		Question question = new Question();
 		question.setCategory(categoryService.getCategory(id));
 		model.addAttribute("question", question);
-		return "question/add";
+		return "category/addQuestion";
 	}
 
 	@PostMapping("{id}/add")
@@ -57,7 +72,6 @@ public class CategoryViewController extends Ideas100CommonViewController {
 							  Model model) {
 		if(bindingResult.hasErrors()){
 			model.addAttribute("category", categoryService.getCategory(id));
-			model.addAttribute("question", question);
 		}
 		try {
 			model.addAttribute("question", questionService.createQuestion(question));
@@ -66,9 +80,8 @@ public class CategoryViewController extends Ideas100CommonViewController {
 			log.error("Error on question add", e);
 			model.addAttribute("question", question);
 			ra.addFlashAttribute("message", Message.info("Unknown error occurred on question add."));
-			return "question/add";
+			return "category/addQuestion";
 		}
 		return "redirect:/categories/{id}";
 	}
-
 }

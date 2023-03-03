@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeset Northo:001_1
+--changeset k4t4u:001_1
 DROP table if exists answers CASCADE;
 DROP table if exists questions CASCADE;
 DROP table if exists categories CASCADE ;
@@ -26,53 +26,60 @@ create table answers (
                          question_id uuid
                              references questions
 );
---changeset Northo:001_2
+--changeset k4t4u:001_2
 insert into categories (id, name) values
-                                      (gen_random_uuid(), 'Zdrowie'),
-                                      (gen_random_uuid(), 'Zwierzęta'),
-                                      (gen_random_uuid(), 'Turystyka'),
-                                      (gen_random_uuid(), 'Uroda i Styl'),
-                                      (gen_random_uuid(), 'Kultura'),
-                                      (gen_random_uuid(), 'Edukacja'),
-                                      (gen_random_uuid(), 'Gry'),
+                                      (gen_random_uuid(), 'Health'),
+                                      (gen_random_uuid(), 'Animals'),
+                                      (gen_random_uuid(), 'Tourism'),
+                                      (gen_random_uuid(), 'Beauty and Style'),
+                                      (gen_random_uuid(), 'Culture'),
+                                      (gen_random_uuid(), 'Education'),
+                                      (gen_random_uuid(), 'Games'),
                                       (gen_random_uuid(), 'Hobby'),
-                                      (gen_random_uuid(), 'Dom i Ogród'),
-                                      (gen_random_uuid(), 'Biznes'),
-                                      (gen_random_uuid(), 'Finanse'),
-                                      (gen_random_uuid(), 'Kulinaria'),
-                                      (gen_random_uuid(), 'Komputery'),
-                                      (gen_random_uuid(), 'Osobiste'),
-                                      (gen_random_uuid(), 'Motoryzacja'),
-                                      (gen_random_uuid(), 'Polityka'),
-                                      (gen_random_uuid(), 'Praca'),
-                                      (gen_random_uuid(), 'Prezenty'),
-                                      (gen_random_uuid(), 'Zakupy'),
-                                      (gen_random_uuid(), 'Elektronika'),
-                                      (gen_random_uuid(), 'Rozrywka'),
+                                      (gen_random_uuid(), 'House and garden'),
+                                      (gen_random_uuid(), 'Business'),
+                                      (gen_random_uuid(), 'Finances'),
+                                      (gen_random_uuid(), 'Culinary'),
+                                      (gen_random_uuid(), 'computers'),
+                                      (gen_random_uuid(), 'Personal'),
+                                      (gen_random_uuid(), 'Automotive'),
+                                      (gen_random_uuid(), 'Policy'),
+                                      (gen_random_uuid(), 'Work'),
+                                      (gen_random_uuid(), 'Presents'),
+                                      (gen_random_uuid(), 'Shopping'),
+                                      (gen_random_uuid(), 'Electronics'),
+                                      (gen_random_uuid(), 'Entertainment'),
                                       (gen_random_uuid(), 'Sex'),
-                                      (gen_random_uuid(), 'Związki'),
-                                      (gen_random_uuid(), 'Inne');
+                                      (gen_random_uuid(), 'Relationships'),
+                                      (gen_random_uuid(), 'Other');
 
 insert into questions (id, name, category_id) values
-    (gen_random_uuid(), 'Jakie są najzdrowsze warzywa?', (select id from categories where name = 'Zdrowie'));
+    (gen_random_uuid(), 'What are the healthiest vegetables?', (select id from categories where name = 'Health'));
 
 insert into questions (id, name, category_id) values
-                                                  (gen_random_uuid(), 'Dlaczego warto uczyć się programowania', (select id from categories where name = 'Edukacja')),
-                                                  (gen_random_uuid(), 'Dlaczego Java jest dobrym językiem na start', (select id from categories where name = 'Edukacja'));
+    (gen_random_uuid(), 'How to best take care of your health?', (select id from categories where name = 'Health'));
 
 insert into questions (id, name, category_id) values
-                                                  (gen_random_uuid(), 'Gdzie najlepiej spędzić wakacje z Polsce', (select id from categories where name = 'Turystyka')),
-                                                  (gen_random_uuid(), 'Gdzie najlepiej spędzić wakacje z Europie', (select id from categories where name = 'Turystyka'));
+                                                  (gen_random_uuid(), 'Why is it worth learning programming?', (select id from categories where name = 'Education')),
+                                                  (gen_random_uuid(), 'Why Java is a good language to start with?', (select id from categories where name = 'Education'));
 
+insert into questions (id, name, category_id) values
+                                                  (gen_random_uuid(), 'Where is the best place to spend your holidays in Poland?', (select id from categories where name = 'Tourism')),
+                                                  (gen_random_uuid(), 'Where is the best place to spend your holidays from Europe?', (select id from categories where name = 'Tourism'));
 
 insert into answers (id, name, question_id) values
-                                                (gen_random_uuid(), 'Marchewka', (select id from questions where name = 'Jakie są najzdrowsze warzywa?')),
-                                                (gen_random_uuid(), 'Brokuł', (select id from questions where name = 'Jakie są najzdrowsze warzywa?')),
-                                                (gen_random_uuid(), 'Dynia', (select id from questions where name = 'Jakie są najzdrowsze warzywa?')),
-                                                (gen_random_uuid(), 'Groch', (select id from questions where name = 'Jakie są najzdrowsze warzywa?'));
+                                                (gen_random_uuid(), 'Mental work', (select id from questions where name = 'Why is it worth learning programming?')),
+                                                (gen_random_uuid(), 'High salary', (select id from questions where name = 'Why is it worth learning programming?')),
+                                                (gen_random_uuid(), 'continuous development of the mind', (select id from questions where name = 'Why is it worth learning programming?'));
 
 insert into answers (id, name, question_id) values
-                                                (gen_random_uuid(), 'Gdańsk', (select id from questions where name = 'Gdzie najlepiej spędzić wakacje z Polsce')),
-                                                (gen_random_uuid(), 'Bieszczady', (select id from questions where name = 'Gdzie najlepiej spędzić wakacje z Polsce')),
-                                                (gen_random_uuid(), 'Mazury', (select id from questions where name = 'Gdzie najlepiej spędzić wakacje z Polsce'));
+                                                (gen_random_uuid(), 'Carrot', (select id from questions where name = 'What are the healthiest vegetables?')),
+                                                (gen_random_uuid(), 'Broccoli', (select id from questions where name = 'What are the healthiest vegetables?')),
+                                                (gen_random_uuid(), 'Pumpkin', (select id from questions where name = 'What are the healthiest vegetables?')),
+                                                (gen_random_uuid(), 'Pea', (select id from questions where name = 'What are the healthiest vegetables?'));
+
+insert into answers (id, name, question_id) values
+                                                (gen_random_uuid(), 'Gdańsk', (select id from questions where name = 'Where is the best place to spend your holidays in Poland?')),
+                                                (gen_random_uuid(), 'Bieszczady', (select id from questions where name = 'Where is the best place to spend your holidays in Poland?')),
+                                                (gen_random_uuid(), 'Mazury', (select id from questions where name = 'Where is the best place to spend your holidays in Poland?'));
 

@@ -15,11 +15,14 @@
           </tr>
           </thead>
           <tbody>
-          <tr th:each="category, it : ${categoriesPage.content}">
-            <td th:text="${it.index}+1"></td>
+          <tr th:each="category, it : ${categories.content}">
+            <td>
+              <span th:text="${it.index}+1"></span>
             <td th:text="${category.name}"></td>
+            <td><a th:href="@{'/categories/'+${category.id}+'/add'}" class="btn btn-primary">Add question</a></td>
           </tr>
           </tbody>
+
         </table>
         <ul>
           <li th:each="question : ${questions}">
